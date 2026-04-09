@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet-async';
  * @param {string} [props.type] - Open Graph type
  */
 export default function SEO({ title, description, path = '', type = 'website' }) {
-  const baseUrl = 'https://quantoperdi.com.br';
+  const baseUrl = 'https://quantoperdi.netlify.app';
   const fullUrl = `${baseUrl}${path}`;
   const siteName = 'QuantoPerdi';
   const fullTitle = `${title} | ${siteName}`;

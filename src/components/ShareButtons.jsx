@@ -8,7 +8,7 @@ import { formatCurrency } from '../utils/calculators';
  * @param {string} [props.path] - URL path for sharing
  */
 export default function ShareButtons({ value, simulatorName, path = '' }) {
-  const baseUrl = 'https://quantoperdi.com.br';
+  const baseUrl = 'https://quantoperdi.netlify.app';
   const url = `${baseUrl}${path}`;
   const formattedValue = formatCurrency(value);
   const text = `😱 Descobri que perdi ${formattedValue} com ${simulatorName}! Descubra quanto você perdeu:`;
