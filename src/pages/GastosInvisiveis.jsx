@@ -4,6 +4,7 @@ import ResultCard from '../components/ResultCard';
 import ShareButtons from '../components/ShareButtons';
 import AdBanner from '../components/AdBanner';
 import { calcInvisibleExpenses, formatCurrency, EXPENSE_PRESETS } from '../utils/calculators';
+import PresetButton from '../components/PresetButton';
 
 export default function GastosInvisiveis() {
   const [amount, setAmount] = useState(15);
@@ -42,9 +43,9 @@ export default function GastosInvisiveis() {
         path="/gastos-invisiveis"
       />
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-8 ">
-          <span className="text-4xl mb-4 block">🚬</span>
+      <div className="mx-auto px-4 py-8">
+        <div className="mb-8 text-center flex flex-col items-center">
+          <span className="text-4xl mb-4 block text-center">🚬</span>
           <h1 className="text-3xl md:text-4xl font-black text-gray-100 mb-3">
             Gastos <span className="text-red-400">Invisíveis</span>
           </h1>
@@ -55,29 +56,24 @@ export default function GastosInvisiveis() {
         </div>
 
         {/* Presets */}
-        <div className="mb-6 " >
+        <div className="mb-6 text-center">
           <p className="text-sm font-medium text-gray-400 mb-3">Escolha um gasto comum:</p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center gap-2">
             {EXPENSE_PRESETS.map((preset) => (
-              <button
+              <PresetButton
                 key={preset.name}
                 onClick={() => handlePresetSelect(preset)}
-                className="px-4 py-2.5 rounded-xl text-sm font-medium cursor-pointer transition-all duration-200 border-none"
-                style={{
-                  background: selectedPreset === preset.name ? 'rgba(239,68,68,0.2)' : 'rgba(255,255,255,0.05)',
-                  color: selectedPreset === preset.name ? '#ef4444' : '#9ca3af',
-                  border: selectedPreset === preset.name ? '1px solid rgba(239,68,68,0.3)' : '1px solid rgba(255,255,255,0.08)',
-                }}
                 id={`preset-${preset.name.toLowerCase().replace(/\s/g, '-')}`}
+                isActive={selectedPreset === preset.name}
               >
                 {preset.emoji} {preset.name}
-              </button>
+              </PresetButton>
             ))}
           </div>
         </div>
 
         {/* Custom Input */}
-        <div className="glass-card p-6 md:p-8 mb-6 " >
+        <div className="glass-card p-6 md:p-8 mb-12 lg:mb-16 text-center" >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label htmlFor="input-amount" className="block text-sm font-medium text-gray-300 mb-2">
@@ -85,7 +81,7 @@ export default function GastosInvisiveis() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={amount}
                 onChange={(e) => {
                   setAmount(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)));
@@ -102,7 +98,7 @@ export default function GastosInvisiveis() {
               <p className="block text-sm font-medium text-gray-300 mb-2">
                 🔄 Frequência
               </p>
-              <div className="flex gap-2">
+              <div className="flex justify-center gap-2">
                 <button
                   onClick={() => setFrequency('daily')}
                   className="flex-1 py-3 rounded-xl text-sm font-medium cursor-pointer transition-all border-none"
@@ -133,7 +129,7 @@ export default function GastosInvisiveis() {
         {/* Timeline */}
         {result && (
           <>
-            <div className="glass-card p-6 md:p-8 mb-6 " >
+            <div className="glass-card p-6 md:p-8 mb-6 text-center" >
               <h3 className="text-lg font-bold text-gray-200 mb-5">⏱️ Linha do tempo da perda</h3>
               <div className="space-y-3">
                 {timelineItems.map((item, i) => {

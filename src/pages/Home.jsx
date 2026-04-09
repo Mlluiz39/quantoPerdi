@@ -66,7 +66,7 @@ export default function Home() {
             Aquele dinheiro que <strong className="text-gray-200">já era</strong>. 
             Gastos invisíveis, juros que engoliram seu salário, investimentos que você não fez.
             <br />
-            <span className="text-red-400 font-medium">A conta chega agora.</span>
+            <span className="text-red-400 font-medium mb-2">A conta chega agora.</span>
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -100,12 +100,12 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full justify-items-stretch">
           {simulators.map((sim) => (
             <Link
               key={sim.path}
               to={sim.path}
-              className="glass-card p-6 no-underline group block"
+              className="glass-card p-6 no-underline group block w-full h-full"
             >
               <div className="flex items-start justify-between mb-4">
                 <span className="text-4xl group-hover:scale-110 transition-transform duration-300 inline-block">
@@ -132,7 +132,7 @@ export default function Home() {
       {/* Social Proof / Stats */}
       <section className="max-w-6xl mx-auto px-4 py-16">
         <div className="glass-card p-8 md:p-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center w-full">
             <div>
               <div className="text-3xl md:text-4xl font-black text-red-400 mb-2">R$ 847M+</div>
               <p className="text-sm text-gray-400">em perdas calculadas</p>
@@ -152,32 +152,32 @@ export default function Home() {
       {/* SEO Content Section */}
       <section className="max-w-4xl mx-auto px-4 py-16">
         <div className="prose prose-invert max-w-none">
-          <h2 className="text-2xl font-bold text-gray-100 mb-6">
+          <h2 className="text-2xl font-bold text-gray-100 mb-8">
             Por que você precisa saber quanto perdeu?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="glass-card p-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full justify-items-stretch">
+            <div className="glass-card p-5 w-full h-full">
               <h3 className="text-lg font-semibold text-gray-200 mb-2">🧠 Consciência financeira</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
                 A maioria das pessoas não faz ideia de quanto dinheiro perdeu ao longo da vida. 
                 Saber o número exato é o primeiro passo para mudar seus hábitos financeiros.
               </p>
             </div>
-            <div className="glass-card p-5">
+            <div className="glass-card p-5 w-full h-full">
               <h3 className="text-lg font-semibold text-gray-200 mb-2">📈 Motivação para investir</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
                 Ver o quanto você já perdeu cria uma urgência real. 
                 Diferente de promessas de ganho futuro, a perda passada é concreta e motivadora.
               </p>
             </div>
-            <div className="glass-card p-5">
+            <div className="glass-card p-5 w-full h-full">
               <h3 className="text-lg font-semibold text-gray-200 mb-2">💡 Educação financeira</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
                 Nossos simuladores explicam juros compostos, inflação e gastos invisíveis 
                 de forma visual e intuitiva. Aprenda enquanto descobre.
               </p>
             </div>
-            <div className="glass-card p-5">
+            <div className="glass-card p-5 w-full h-full">
               <h3 className="text-lg font-semibold text-gray-200 mb-2">🎯 Decisões melhores</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
                 Com dados reais baseados em índices históricos (IPCA, CDI, Ibovespa), 

@@ -4,6 +4,7 @@ import ResultCard from '../components/ResultCard';
 import ShareButtons from '../components/ShareButtons';
 import AdBanner from '../components/AdBanner';
 import { calcCreditCardDebt, formatCurrency } from '../utils/calculators';
+import PresetButton from '../components/PresetButton';
 
 export default function PerdaCartao() {
   const [debtValue, setDebtValue] = useState(3000);
@@ -31,9 +32,9 @@ export default function PerdaCartao() {
         path="/perda-cartao"
       />
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-8 ">
-          <span className="text-4xl mb-4 block">💳</span>
+      <div className="mx-auto px-4 py-8">
+        <div className="mb-8 text-center flex flex-col items-center">
+          <span className="text-4xl mb-4 block text-center">💳</span>
           <h1 className="text-3xl md:text-4xl font-black text-gray-100 mb-3">
             Juros do <span className="text-red-400">Cartão</span>
           </h1>
@@ -44,7 +45,7 @@ export default function PerdaCartao() {
         </div>
 
         {/* Input Form */}
-        <div className="glass-card p-6 md:p-8 mb-6 " >
+        <div className="glass-card p-6 md:p-8 mb-12 lg:mb-16 text-center" >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             <div>
               <label htmlFor="input-debt" className="block text-sm font-medium text-gray-300 mb-2">
@@ -52,7 +53,7 @@ export default function PerdaCartao() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={debtValue}
                 onChange={(e) => setDebtValue(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))}
                 placeholder="Ex: 3000"
@@ -67,7 +68,7 @@ export default function PerdaCartao() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={monthlyRate}
                 onChange={(e) => setMonthlyRate(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))}
                 placeholder="Ex: 14"
@@ -75,19 +76,15 @@ export default function PerdaCartao() {
                 step="0.1"
                 id="input-rate"
               />
-              <div className="flex flex-wrap gap-1.5 mt-2">
+              <div className="flex flex-wrap justify-center gap-2 mt-3">
                 {ratePresets.map((preset) => (
-                  <button
+                  <PresetButton
                     key={preset.rate}
                     onClick={() => setMonthlyRate(preset.rate)}
-                    className="text-xs px-2 py-1 rounded-md cursor-pointer transition-all border-none"
-                    style={{
-                      background: monthlyRate === preset.rate ? 'rgba(239,68,68,0.2)' : 'rgba(255,255,255,0.05)',
-                      color: monthlyRate === preset.rate ? '#ef4444' : '#6b7280',
-                    }}
+                    isActive={monthlyRate === preset.rate}
                   >
                     {preset.emoji} {preset.label}
-                  </button>
+                  </PresetButton>
                 ))}
               </div>
             </div>
@@ -98,7 +95,7 @@ export default function PerdaCartao() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={months}
                 onChange={(e) => setMonths(e.target.value === '' ? '' : Math.max(1, Math.min(120, Number(e.target.value))))}
                 placeholder="Ex: 12"
@@ -106,19 +103,15 @@ export default function PerdaCartao() {
                 max="120"
                 id="input-months"
               />
-              <div className="flex gap-2 mt-2">
+              <div className="flex flex-wrap justify-center gap-2 mt-3">
                 {[6, 12, 24, 36].map((m) => (
-                  <button
+                  <PresetButton
                     key={m}
                     onClick={() => setMonths(m)}
-                    className="text-xs px-2 py-1 rounded-md cursor-pointer transition-all border-none"
-                    style={{
-                      background: months === m ? 'rgba(239,68,68,0.2)' : 'rgba(255,255,255,0.05)',
-                      color: months === m ? '#ef4444' : '#6b7280',
-                    }}
+                    isActive={months === m}
                   >
                     {m} meses
-                  </button>
+                  </PresetButton>
                 ))}
               </div>
             </div>

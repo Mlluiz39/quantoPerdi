@@ -4,6 +4,7 @@ import ResultCard from '../components/ResultCard';
 import ShareButtons from '../components/ShareButtons';
 import AdBanner from '../components/AdBanner';
 import { calcInvestmentLoss, formatCurrency, INVESTMENT_LABELS } from '../utils/calculators';
+import PresetButton from '../components/PresetButton';
 
 export default function PerdaInvestimento() {
   const currentYear = new Date().getFullYear();
@@ -35,9 +36,9 @@ export default function PerdaInvestimento() {
         path="/perda-poupanca"
       />
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <span className="text-4xl mb-4 block">📉</span>
+      <div className="mx-auto px-4 py-8">
+        <div className="mb-8 text-center flex flex-col items-center">
+          <span className="text-4xl mb-4 block text-center">📉</span>
           <h1 className="text-3xl md:text-4xl font-black text-gray-100 mb-3">
             Investimento <span className="text-red-400">Perdido</span>
           </h1>
@@ -48,7 +49,7 @@ export default function PerdaInvestimento() {
         </div>
 
         {/* Input Form */}
-        <div className="glass-card p-6 md:p-8 mb-6">
+        <div className="glass-card p-6 md:p-8 mb-12 lg:mb-16 text-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label htmlFor="input-initial-value" className="block text-sm font-medium text-gray-300 mb-2">
@@ -56,7 +57,7 @@ export default function PerdaInvestimento() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={initialValue}
                 onChange={(e) => setInitialValue(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))}
                 placeholder="Ex: 1000"
@@ -71,7 +72,7 @@ export default function PerdaInvestimento() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={monthlyContribution}
                 onChange={(e) => setMonthlyContribution(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))}
                 placeholder="Ex: 200"
@@ -86,7 +87,7 @@ export default function PerdaInvestimento() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={startYear}
                 onChange={(e) => setStartYear(e.target.value === '' ? '' : Number(e.target.value))}
                 placeholder="Ex: 2015"
@@ -100,21 +101,16 @@ export default function PerdaInvestimento() {
               <p className="block text-sm font-medium text-gray-300 mb-2">
                 📈 Tipo de investimento
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap justify-center gap-2 mt-2">
                 {Object.entries(INVESTMENT_LABELS).map(([key, { name, emoji }]) => (
-                  <button
+                  <PresetButton
                     key={key}
                     onClick={() => setInvestmentType(key)}
-                    className="px-3 py-2 rounded-lg text-sm font-medium cursor-pointer transition-all duration-200 border-none"
-                    style={{
-                      background: investmentType === key ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255,255,255,0.05)',
-                      color: investmentType === key ? '#ef4444' : '#9ca3af',
-                      border: investmentType === key ? '1px solid rgba(239, 68, 68, 0.3)' : '1px solid transparent',
-                    }}
                     id={`btn-${key}`}
+                    isActive={investmentType === key}
                   >
                     {emoji} {name}
-                  </button>
+                  </PresetButton>
                 ))}
               </div>
             </div>

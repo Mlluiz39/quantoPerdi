@@ -4,6 +4,7 @@ import ResultCard from '../components/ResultCard';
 import ShareButtons from '../components/ShareButtons';
 import AdBanner from '../components/AdBanner';
 import { calcInflationLoss, formatCurrency } from '../utils/calculators';
+import PresetButton from '../components/PresetButton';
 
 export default function PerdaInflacao() {
   const currentYear = new Date().getFullYear();
@@ -41,9 +42,9 @@ export default function PerdaInflacao() {
         path="/perda-inflacao"
       />
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="mb-8 ">
-          <span className="text-4xl mb-4 block">📊</span>
+      <div className="mx-auto px-4 py-8">
+        <div className="mb-8 text-center flex flex-col items-center">
+          <span className="text-4xl mb-4 block text-center">📊</span>
           <h1 className="text-3xl md:text-4xl font-black text-gray-100 mb-3">
             Perda com <span className="text-red-400">Inflação</span>
           </h1>
@@ -54,7 +55,7 @@ export default function PerdaInflacao() {
         </div>
 
         {/* Input Form */}
-        <div className="glass-card p-6 md:p-8 mb-6 " >
+        <div className="glass-card p-6 md:p-8 mb-12 lg:mb-16 text-center" >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label htmlFor="input-value" className="block text-sm font-medium text-gray-300 mb-2">
@@ -62,26 +63,22 @@ export default function PerdaInflacao() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={value}
                 onChange={(e) => setValue(e.target.value === '' ? '' : Math.max(0, Number(e.target.value)))}
                 placeholder="Ex: 1000"
                 min="0"
                 id="input-value"
               />
-              <div className="flex flex-wrap gap-1.5 mt-2">
+              <div className="flex flex-wrap justify-center gap-2 mt-3">
                 {valuePresets.map((preset) => (
-                  <button
+                  <PresetButton
                     key={preset.value}
                     onClick={() => setValue(preset.value)}
-                    className="text-xs px-2 py-1 rounded-md cursor-pointer transition-all border-none"
-                    style={{
-                      background: value === preset.value ? 'rgba(239,68,68,0.2)' : 'rgba(255,255,255,0.05)',
-                      color: value === preset.value ? '#ef4444' : '#6b7280',
-                    }}
+                    isActive={value === preset.value}
                   >
                     {preset.label}
-                  </button>
+                  </PresetButton>
                 ))}
               </div>
             </div>
@@ -92,7 +89,7 @@ export default function PerdaInflacao() {
               </label>
               <input
                 type="number"
-                className="input-dark"
+                className="input-dark text-center"
                 value={startYear}
                 onChange={(e) => setStartYear(e.target.value === '' ? '' : Number(e.target.value))}
                 placeholder="Ex: 2010"
@@ -100,19 +97,15 @@ export default function PerdaInflacao() {
                 max={currentYear - 1}
                 id="input-year"
               />
-              <div className="flex flex-wrap gap-1.5 mt-2">
+              <div className="flex flex-wrap justify-center gap-2 mt-3">
                 {yearPresets.map((preset) => (
-                  <button
+                  <PresetButton
                     key={preset.year}
                     onClick={() => setStartYear(preset.year)}
-                    className="text-xs px-2 py-1 rounded-md cursor-pointer transition-all border-none"
-                    style={{
-                      background: startYear === preset.year ? 'rgba(239,68,68,0.2)' : 'rgba(255,255,255,0.05)',
-                      color: startYear === preset.year ? '#ef4444' : '#6b7280',
-                    }}
+                    isActive={startYear === preset.year}
                   >
                     {preset.label}
-                  </button>
+                  </PresetButton>
                 ))}
               </div>
             </div>
